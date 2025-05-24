@@ -7,22 +7,34 @@
                 <th>Nama</th>
                 <th>No. Handphone</th>
                 <th>Alamat</th>
+                <th>Instansi</th>
+                <th>Tujuan Kunjungan</th>
                 <th>Tanggal Kunjungan</th>
             </tr>
         </thead>
         <tbody>
-            <?php $no=1; foreach($mysqli->daftar_tamu()as $d);
-                if($d>1){ 
-                foreach($mysqli->daftar_tamu()as $x){
-                ?>
+            <?php 
+            $no = 1; 
+            $data_tamu = $mysqli->daftar_tamu();
+            
+            if(!empty($data_tamu[0])) { 
+                foreach($data_tamu as $x){
+            ?>
                     <tr>
-                        <td><?php echo $no++;?></td>
-                        <td><?php echo $x['nama'];?></td>
-                        <td><?php echo $x['hp'];?></td>
-                        <td><?php echo $x['alamat'];?></td>
-                        <td><?php echo $x['tanggal'];?></td>
+                        <td><?= $no++; ?></td>
+                        <td><?= htmlspecialchars($x['nama']); ?></td>
+                        <td><?= htmlspecialchars($x['hp']); ?></td>
+                        <td><?= htmlspecialchars($x['alamat']); ?></td>
+                        <td><?= htmlspecialchars($x['instansi'] ?? '-'); ?></td>
+                        <td><?= htmlspecialchars($x['tujuan_kunjungan'] ?? '-'); ?></td>
+                        <td><?= htmlspecialchars($x['tanggal']); ?></td>
                     </tr>
-                <?php } } else{ echo '<tr><td colspan="5" class="text-center">Belum ada data tamu!</td></tr>'; }  ?>
+            <?php 
+                } 
+            } else { 
+                echo '<tr><td colspan="7" class="text-center">Belum ada data tamu!</td></tr>'; 
+            } 
+            ?>
         </tbody>
     </table>
 </div>
