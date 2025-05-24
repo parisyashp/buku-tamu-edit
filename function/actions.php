@@ -7,8 +7,10 @@ if($aksi=='tambah_tamu'){
     $nama = $_POST['nama'];
     $handphone = $_POST['handphone'];
     $alamat = $_POST['alamat'];
+    $instansi = $_POST['instansi'];
+    $tujuan_kunjungan = $_POST['tujuan_kunjungan'];
 
-    foreach($mysqli->tambah_tamu($nama,$handphone,$alamat) as $query);
+    foreach($mysqli->tambah_tamu($nama,$handphone,$alamat,$instansi,$tujuan_kunjungan) as $query);
 
     if($query['status'] == 'success'){
         echo "success";
@@ -17,6 +19,7 @@ if($aksi=='tambah_tamu'){
     }else{
         echo "failed";
     }
+}
 }else if($aksi=='login'){
     $username = $_POST['username'];
     $password = $_POST['password']; 
